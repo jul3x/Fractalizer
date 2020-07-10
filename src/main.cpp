@@ -78,7 +78,7 @@ int main() {
     float factor = 1;
     const float bpm = 130.0f;
     float beats_distance = 60.0f / bpm;
-    float velocity = 0.0f, acceleration = 5.0f;
+    float velocity = 0.0f, acceleration = 7.0f;
     sf::Clock clock;
     sf::Time time_elapsed, fully_elapsed{};
     while (window.isOpen())
@@ -118,8 +118,8 @@ int main() {
         thread11.join();
         thread12.join();
 
-        if (std::abs(findMod(fully_elapsed.asSeconds() + 0.2f, beats_distance)) < 0.1f)
-            velocity = 1.5f;
+        if (std::abs(findMod(fully_elapsed.asSeconds() + 0.3f, beats_distance)) < 0.1f)
+            velocity = 2.0f;
 
         //float velocity = 0.3 * std::pow(std::sin(fully_elapsed.asSeconds() * 0.5 * M_PI / bpm / 60.0f), 4.0) + 0.1;
         factor += velocity * time_elapsed.asSeconds();
@@ -133,7 +133,7 @@ int main() {
 //        window.setView(view);
 
         velocity -= acceleration * time_elapsed.asSeconds();
-        if (velocity < 0.0f) velocity = 0.0f;
+        if (velocity < 0.2f) velocity = 0.2f;
 
         window.clear();
         window.draw(*pointmap);
